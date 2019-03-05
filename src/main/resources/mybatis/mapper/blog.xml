@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blog">
+
+<insert id="makeBlog" parameterType="blogVo">
+	<![CDATA[ insert into blog values (#{user_no},#{title}, #{logo}) ]]>
+</insert>
+
+<select id="getBlogInfo" resultType="blogVo">
+
+	<![CDATA[ select * from blog where user_no = #{memberNo} ]]>
+
+</select>
+
+<update id="updateBlogInfo" parameterType="blogVo">
+	<![CDATA[ update blog 
+				set
+				title = #{title},
+				logo = #{logo}
+				where
+				user_no = #{user_no} 
+	]]>
+
+</update>
+
+
+<insert id="insertCategory" parameterType="categoryVo">
+<![CDATA[
+
+insert into category values (0, #{name},#{description}, now(), #{user_no})
+
+]]>
+
+
+</insert>
+
+
+<select id="getCategories" parameterType="int" resultType="categoryVo">
+<![CDATA[
+	select * from category where user_no = #{userNo}
+]]>
+</select>
+
+
+<delete id="removeCategory" parameterType="int">
+<![CDATA[
+	delete from category where no = #{no}
+]]>
+
+</delete>
+
+
+<select id="getCategoriesByMap" parameterType="int" resultType="map">
+<![CDATA[
+
+select no, name, description, (select count(*) from post p where p.no = c.no) as postCount
+from category c where c.user_no = #{userNo}
+
+]]>
+
+</select>
+
+<select id="countPostToCategory" parameterType="int" resultType="int">
+<![CDATA[
+select count(*) from post p, category c where p.no = c.no
+]]>
+</select>
+
+
+<insert id="insertPost" parameterType="postVo">
+<![CDATA[
+insert into post values (0, #{title}, #{content}, now(), #{cateogry_no})
+]]>
+</insert>
+
+</mapper>

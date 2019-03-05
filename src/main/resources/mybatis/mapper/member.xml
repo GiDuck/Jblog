@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<insert id="insertMember" parameterType="memberVo">
+	<![CDATA[
+	insert into user values (0, #{id}, #{name}, sha2(#{password}, 256), now())
+	]]>
+</insert>
+
+
+<select id="getMember" parameterType="memberVo" resultType="memberVo">
+	<![CDATA[
+	select * from user where id = #{id} and password = sha2(#{password}, 256)
+	]]>
+</select>
+
+<update id="updateMember" parameterType="memberVo">
+	<![CDATA[
+	update user
+		set name = #{name}, password = sha2(#{password}, 256)
+			where no = #{no}
+	]]>
+</update>
+
+<delete id="deleteMember">
+	<![CDATA[
+	delete from user where no = #{no}
+	]]>
+
+</delete>
+
+<select id="checkId" parameterType="string" resultType="integer">
+	<![CDATA[
+	select count(*) from user
+	where id = #{id}
+	]]>
+
+</select>
+
+
+<select id="checkAuth" parameterType="memberVo" resultType="integer">
+	<![CDATA[
+	select count(*) from user
+	where id = #{id} and password = sha2(#{password}, 256)
+	]]>
+
+</select>
+
+
+
+
+</mapper>
