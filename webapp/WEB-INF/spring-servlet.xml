@@ -13,8 +13,8 @@
 	<mvc:default-servlet-handler />
 
 
-	<mvc:resources mapping="/uploads/images/**"
-		location="file:/uploads/" />
+	<mvc:resources mapping="/uploads/files/**"
+		location="file:/uploads/files/" />
 
 
 	<mvc:annotation-driven>

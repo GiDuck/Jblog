@@ -51,10 +51,10 @@
 function Table($table){
 	
 	this.$table = $table,
-	this.add = function(valueObj){
+	this.add = function(valueObj, index){
 		
-		let $newLine = $("<tr>").attr("no", valueObj.num)
-		.append($("<td>").html(valueObj.num))
+		let $newLine = $("<tr>").attr("no", valueObj.num).attr("tag", valueObj.name)
+		.append($("<td>").html(index + 1))
 		.append($("<td>").html(valueObj.name))
 		.append($("<td>").html(valueObj.postCount))
 		.append($("<td>").html(valueObj.descritpion))
@@ -63,8 +63,12 @@ function Table($table){
 				.css("cursor", "pointer").on("click", function(e){
 			let $parentTd = $(e.target).closest("tr");
 			let rowNo = $parentTd.attr("no");
+			let tag = $parentTd.attr("tag");
+			if(tag == "미분류"){
+				swal("삭제 실패", "이 카테고리는 삭제할 수 없습니다.", "error");
+				return;
+			}
 			removeRow(rowNo);
-			//$parentTd.remove();
 		})));
 		
 		$table.append($newLine);
@@ -119,7 +123,7 @@ function appendRows(list){
 		valueObj.name = nowElement.name;
 		valueObj.descritpion = nowElement.description;
 		valueObj.postCount = nowElement.postCount;
-		tableObj.add(valueObj);
+		tableObj.add(valueObj, i);
 		
 	}
 
@@ -165,6 +169,11 @@ $(document).ready(function(){
 		
 		let name = $nameField.val();
 		let desc = $descField.val();
+		
+		if(name == "미분류"){
+			swal("생성 실패", "미분류 카테고리는 하나만 생성이 가능합니다.", "error");
+			return;
+		}
 		
 		if(!checkStrIsBlank(name) && !checkStrIsBlank(desc) && userNo){
 			

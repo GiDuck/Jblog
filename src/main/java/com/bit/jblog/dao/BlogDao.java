@@ -60,4 +60,28 @@ public class BlogDao {
 		return sqlSession.insert("blog.insertPost", vo);
 	}
 	
+	public List<Map<String, String>> getPosts (int userNo){
+		
+		return sqlSession.selectList("blog.getPosts", userNo);
+	}
+	
+	public List<Map<String, String>> getPostsByCategory (int categoryNo){
+		
+		return sqlSession.selectList("blog.getPostsByCategory", categoryNo);
+	}
+	
+	
+	public int deletePost(int postNo) {
+		return sqlSession.delete("blog.deletePost", postNo);
+	}
+	
+	public int updatePost(PostVo vo) {
+		return sqlSession.update("blog.updatePost", vo);
+	}
+	
+	public PostVo getSinglePost(int postNum) {
+		
+		return sqlSession.selectOne("blog.getSinglePost", postNum);
+	}
+	
 }

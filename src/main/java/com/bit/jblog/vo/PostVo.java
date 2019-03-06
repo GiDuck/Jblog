@@ -28,6 +28,7 @@ public class PostVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	public Date getReg_date() {
 		return reg_date;
 	}
@@ -37,14 +38,19 @@ public class PostVo {
 	public int getCateogry_no() {
 		return category_no;
 	}
-	public void setCateogry_no(int cateogry_no) {
-		this.category_no = cateogry_no;
+	public int getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
 	}
 	@Override
 	public String toString() {
 		return "PostVo [no=" + no + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date
-				+ ", cateogry_no=" + category_no + "]";
+				+ ", category_no=" + category_no + "]";
 	}
+
+	
 	
 	
 	

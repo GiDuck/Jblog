@@ -63,7 +63,7 @@ public class MemberController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
-		return request.getContextPath() + "/";
+		return "redirect:/";
 	}
 	
 	

@@ -79,9 +79,36 @@ public class BlogService {
 	}
 	
 	public BlogStatusCode insertPost(PostVo postVo) {
-		
+		System.out.println(postVo.toString());
 		if(dao.insertPost(postVo) > 0) return BlogStatusCode.POST_SUCCESS;
 		return BlogStatusCode.POST_FAIL;
 	}
 	
+	public List<Map<String, String>> getPosts (int userNo){
+		return dao.getPosts(userNo);
+	}
+	
+	public List<Map<String, String>> getPostsByCategory (int categoryNo){
+		
+		return dao.getPostsByCategory(categoryNo);
+	}
+	
+	
+	public BlogStatusCode deletePost (int postNo) {
+
+		if(dao.deletePost(postNo) > 0) return BlogStatusCode.POST_DEL_SUCCESS;
+		return BlogStatusCode.POST_DEL_FAIL;
+		
+	};
+	
+	public BlogStatusCode updatePost (PostVo postVo) {
+		if(dao.updatePost(postVo) > 0) return BlogStatusCode.POST_UPDATE_SUCCESS;
+		return BlogStatusCode.BLOG_UPDATE_FAIL;
+	}
+	
+	
+	public PostVo getSinglePost(int postNum) {
+		
+		return dao.getSinglePost(postNum);
+	}
 }

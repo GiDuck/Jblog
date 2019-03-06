@@ -7,7 +7,7 @@
 	
 <div id="header">
 
-	<h1>Spring 이야기</h1>
+	<h1>${blog.title}</h1>
 	<ul>
 		<c:choose>
 			<c:when test="${sessionScope.authUser eq null}">

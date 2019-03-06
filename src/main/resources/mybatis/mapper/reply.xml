@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+
+<insert id ="insertReply" parameterType="replyVo">
+
+<![CDATA[
+
+insert into comment values (0, #{content}, now(), #{post_no})
+
+]]>
+
+</insert>
+
+
+<select id="getReplies" resultType="map" parameterType="int">
+<![CDATA[
+
+select no, content, reg_date from comment
+where post_no = #{postNo}
+
+]]>
+
+</select>
+
+<delete id="deleteReply" parameterType="int">
+<![CDATA[
+
+delete from comment where no = #{replyNo}
+
+]]>
+
+</delete>
+
+
+<update id="updateReply" parameterType="replyVo">
+<![CDATA[
+update comment set content = #{content} where no = #{no}
+]]>
+
+</update>
+
+</mapper>

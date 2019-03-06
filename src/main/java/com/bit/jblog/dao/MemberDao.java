@@ -21,7 +21,8 @@ public class MemberDao {
 	private Logger logger = LoggerFactory.getLogger(MemberDao.class);
 
 	public int insertMember(MemberVo vo) {
-		return sqlSession.insert("member.insertMember", vo);
+		sqlSession.insert("member.insertMember", vo);
+		return vo.getNo();
 	}
 
 	public MemberVo getMember(MemberVo vo) {
@@ -42,6 +43,10 @@ public class MemberDao {
 	
 	public int checkAuth(MemberVo vo) {
 		return sqlSession.selectOne("member.checkAuth", vo);
+	}
+	
+	public int getNoById(String id) {
+		return sqlSession.selectOne("member.getNoById", id);
 	}
 
 }

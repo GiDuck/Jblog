@@ -14,7 +14,6 @@ public class DefaultController {
 	
 	@RequestMapping("/")
 	public String welcome() {
-		logger.info("Welcome.." + new Date());
 		return "main/index";
 	}
 		

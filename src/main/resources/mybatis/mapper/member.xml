@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-<insert id="insertMember" parameterType="memberVo">
+<insert id="insertMember" parameterType="memberVo" useGeneratedKeys="true" keyProperty="no">
 	<![CDATA[
 	insert into user values (0, #{id}, #{name}, sha2(#{password}, 256), now())
 	]]>
@@ -43,6 +43,13 @@
 	<![CDATA[
 	select count(*) from user
 	where id = #{id} and password = sha2(#{password}, 256)
+	]]>
+
+</select>
+
+<select id="getNoById" resultType="int">
+	<![CDATA[
+	select no from user where id = #{id}
 	]]>
 
 </select>

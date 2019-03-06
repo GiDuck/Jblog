@@ -34,9 +34,6 @@ public class AuthIntercepter extends HandlerInterceptorAdapter {
 		}else {
 			ownerId = path[1];
 		}
-		
-		System.out.println(ownerId);
-		System.out.println(authUser.toString());
 
 		if (ownerId == null || !((authUser.getId()).equals(ownerId))) {
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED);

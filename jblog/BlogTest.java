@@ -129,65 +129,6 @@ public class BlogTest {
 	
 	
 	
-	@Ignore
-	@Test
-	public void insertCategoryTest() {
-		
-		
-		CategoryVo categoryVo = new CategoryVo();
-		categoryVo.setName("요리");
-		categoryVo.setDescription("치즈볼");
-		categoryVo.setReg_date(new Date());
-		categoryVo.setUser_no(memberVo.getNo());
-		Assert.assertEquals(BlogStatusCode.CATEGORY_ADD_SUCCESS, service.insertCategory(categoryVo));
-		
-	}
-	
-	
-	@Ignore
-	@Test
-	public void getCategoryTest() {
-		
-		List<CategoryVo> categories = service.getCategories(memberVo.getNo());
-		for(CategoryVo vo : categories) {
-			System.out.println(vo.toString());
-		}
-		
-	}
-	
-	@Ignore
-	@Test
-	public void removeCategoryTest() {
-		
-		Assert.assertEquals(BlogStatusCode.CATEGORY_DEL_SUCCESS, service.removeCategory(1));
-		
-	}
-	
-	@Ignore
-	@Test
-	public void getCategoryByMapTest() {
-		
-		List<Map<String, String>> categories = service.getCategoriesByMap(memberVo.getNo());
-		for(Map<String, String> map : categories) {
-			System.out.println(map);
-		}
-		
-	}
-	
-	@Test
-	public void writeBoardTest() {
-		
-		
-		PostVo vo = new PostVo();
-		vo.setTitle("22 포스팅");
-		vo.setCateogry_no(7);
-		vo.setContent("12시에 올리는 첫번째 포스팅....");
-		Assert.assertEquals(BlogStatusCode.POST_SUCCESS, service.insertPost(vo));
-		
-		
-	}
-	
-	
 	
 	
 	

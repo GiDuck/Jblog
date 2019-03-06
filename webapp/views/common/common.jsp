@@ -3,20 +3,6 @@
 
 <script>
 
-window.onload = function(){
-	let memberStatusCodeArr = JSON.parse('${memberStatusCode}');
-	let blogStatusCodeCodeArr = JSON.parse('${blogStatusCode}');
-
-	exceptionHandler(function(){
-		window.memberStatusCode = parseStatusArrToObj(memberStatusCodeArr);
-	});
-	
-	exceptionHandler(function(){
-		window.blogStatusCode = parseStatusArrToObj(blogStatusCodeCodeArr);
-	});
-
-}
-
 
 function exceptionHandler(func){
 	
@@ -48,5 +34,22 @@ function checkStrIsBlank(str){
 	return false;
 	
 }
+
+(function(){
+	let memberStatusCodeArr = JSON.parse('${memberStatusCode}');
+	let blogStatusCodeArr = JSON.parse('${blogStatusCode}');
+	
+	
+	exceptionHandler(function(){
+		window.memberStatusCode = parseStatusArrToObj(memberStatusCodeArr);
+	});
+	
+	exceptionHandler(function(){
+		window.blogStatusCode = parseStatusArrToObj(blogStatusCodeArr);
+	});
+
+})();
+
+
 
 </script>

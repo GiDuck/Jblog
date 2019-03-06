@@ -7,7 +7,7 @@
 	<typeAlias type="com.bit.jblog.vo.BlogVo" alias="blogVo"/>
 	<typeAlias type="com.bit.jblog.vo.CategoryVo" alias="categoryVo"/>
 	<typeAlias type="com.bit.jblog.vo.PostVo" alias="postVo"/>
-	
+	<typeAlias type="com.bit.jblog.vo.ReplyVo" alias="replyVo"/>
 	
 	</typeAliases>
 	
@@ -15,6 +15,8 @@
 	<mappers>
 	<mapper resource="mybatis/mapper/member.xml"/>
 	<mapper resource="mybatis/mapper/blog.xml"/>
+	<mapper resource="mybatis/mapper/reply.xml"/>
+	
 	</mappers>
 	
 </configuration>

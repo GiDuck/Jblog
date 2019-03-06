@@ -19,11 +19,11 @@
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="title" value="${admin.title}"></td>
+			      			<td><input type="text" size="40" name="title" value="${blog.title}"></td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img name="logo-img" src='${pageContext.request.contextPath}${admin.logo}' onerror="this.src='${pageContext.request.contextPath}/assets/images/spring-logo.jpg'"></td>      			
+			      			<td><img name="logo-img" src='${pageContext.request.contextPath}${blog.logo}' onerror="this.src='${pageContext.request.contextPath}/assets/images/spring-logo.jpg'"></td>      			
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
@@ -67,8 +67,8 @@ $(document).ready(function(){
 		let files = $("input[name='logo-file']").prop("files");
 		let formData = new FormData();
 		formData.append("title", $("input[name='title']").val());
-		formData.append("user_no", "${admin.user_no}");
-		formData.append("logo", "${admin.logo}");
+		formData.append("user_no", "${blog.user_no}");
+		formData.append("logo", "${blog.logo}");
 		formData.append("logo-file", files[0]);
 
 		

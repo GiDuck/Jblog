@@ -16,17 +16,13 @@ public class StatusConfig implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 	
 		
-		try {
-            ObjectMapper mapper = new ObjectMapper();
             List<StatusEnum> memberCode = EnumTransferer.getEnumCode(MemberStatusCode.class);
             List<StatusEnum> blogCode = EnumTransferer.getEnumCode(BlogStatusCode.class);
 
-            sce.getServletContext().setAttribute("memberStatusCode", mapper.writeValueAsString(memberCode));
-            sce.getServletContext().setAttribute("blogStatusCode", mapper.writeValueAsString(blogCode));
+            sce.getServletContext().setAttribute("memberStatusCode",BlogHelper.parseToJson(memberCode));
+            sce.getServletContext().setAttribute("blogStatusCode", BlogHelper.parseToJson(blogCode));
 
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	

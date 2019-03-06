@@ -3,7 +3,7 @@ package com.bit.jblog.utils.file;
 public enum FileUploadInfo {
 	
 	PARENT_PATH("c:/"),
-	UPLOAD_IMAGE_PATH("/uploads/images/");
+	UPLOAD_IMAGE_PATH("/uploads/files/images/");
 	
 	private String value;
 

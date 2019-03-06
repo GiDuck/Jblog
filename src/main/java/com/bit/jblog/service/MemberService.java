@@ -1,5 +1,6 @@
 package com.bit.jblog.service;
 
+import org.apache.ibatis.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.bit.jblog.dao.MemberDao;
 import com.bit.jblog.utils.status.BlogStatusCode;
 import com.bit.jblog.utils.status.MemberStatusCode;
 import com.bit.jblog.vo.BlogVo;
+import com.bit.jblog.vo.CategoryVo;
 import com.bit.jblog.vo.MemberVo;
 
 @Service
@@ -24,16 +26,26 @@ public class MemberService {
 	@Autowired
 	private BlogDao blogDao;
 	
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public MemberStatusCode insertMember (MemberVo vo) { 
 	
-		if(dao.insertMember(vo) == 1) {
+		int no = dao.insertMember(vo);
+		if( no != 0) {
 			BlogVo blogVo = new BlogVo();
 			blogVo.setTitle(vo.getName() + " 님의 블로그 입니다.");
-			blogVo.setLogo("/assets/images/logo.jpg\"");
-			blogVo.setUser_no(vo.getNo());
-			if(blogDao.makeBlog(blogVo) > 0) return MemberStatusCode.JOIN_SUCCESS;
+			blogVo.setLogo("/assets/images/logo.jpg");
+			blogVo.setUser_no(no);
+			
+			CategoryVo categoryVo = new CategoryVo();
+			categoryVo.setName("미분류");
+			categoryVo.setNo(0);
+			categoryVo.setUser_no(no);
+			categoryVo.setDescription("미분류");
+			
+			if(blogDao.makeBlog(blogVo) > 0 && blogDao.insertCategory(categoryVo) > 0) 
+			return MemberStatusCode.JOIN_SUCCESS;
 		}
+		
 		return MemberStatusCode.JOIN_FAIL;
 		
 	}
@@ -74,6 +86,10 @@ public class MemberService {
 		if(dao.deleteMember(vo.getNo()) == 1) return MemberStatusCode.ACCOUNT_DEL_SUCCESS;
 		return MemberStatusCode.ACCOUNT_DEL_FAIL;
 		
+	}
+	
+	public int getNoById(String id) {
+		return dao.getNoById(id) ;
 	}
 	
 	

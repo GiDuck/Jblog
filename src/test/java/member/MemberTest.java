@@ -1,4 +1,5 @@
 package member;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
@@ -78,6 +79,14 @@ public class MemberTest {
 	@Test
 	public void testDeleteMember() {
 		Assert.assertEquals(MemberStatusCode.ACCOUNT_DEL_SUCCESS ,service.deleteMember(vo));
+	}
+	
+
+	@Test
+	public void testGetNo() {
+		int num = service.getNoById("gdtbgl93");
+		assertNotNull(num);
+		
 	}
 	
 

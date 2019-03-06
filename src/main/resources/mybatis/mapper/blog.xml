@@ -73,4 +73,56 @@ insert into post values (0, #{title}, #{content}, now(), #{cateogry_no})
 ]]>
 </insert>
 
+
+<select id="getPosts" resultType="map" parameterType="int">
+
+<![CDATA[
+
+select p.no, p.title, p.content, p.reg_Date, c.no as c_no, c.name as c_name, c.user_no , c.no as c_no
+from post p, category c
+where p.category_no = c.no and c.user_no = #{userNo}
+order by p.reg_Date desc
+
+]]>
+</select>
+
+
+<select id="getPostsByCategory" resultType="map" parameterType="int">
+<![CDATA[
+select p.no, p.title, p.content, p.reg_Date, c.no as c_no, c.name as c_name, c.user_no
+from post p, category c
+where p.category_no = c.no and c.no = #{categoryNo}
+order by p.reg_Date desc
+
+]]>
+
+</select>
+
+<delete id="deletePost" parameterType="int">
+
+<![CDATA[
+delete from post where no = #{postNo}
+]]>
+</delete>
+
+<update id="updatePost" parameterType="postVo">
+
+<![CDATA[
+update post set title = #{title}, category_no = #{category_no}, content = #{content}
+where no = #{no}
+]]>
+
+
+</update>
+
+
+<select id="getSinglePost" resultType="postVo">
+
+<![CDATA[
+select * from post where no = #{no}
+]]>
+
+
+</select>
+
 </mapper>
