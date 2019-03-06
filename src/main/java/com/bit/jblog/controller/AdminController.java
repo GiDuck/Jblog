@@ -92,8 +92,9 @@ public class AdminController {
 	
 	@RequestMapping("getPostsByCategory")
 	@ResponseBody
-	public List<Map<String, String>> getPostsByCategory(@RequestParam("categoryNo") int categoryNo){
-		return service.getPostsByCategory(categoryNo);
+	public List<Map<String, String>> getPostsByCategory(@RequestParam("categoryNo") int categoryNo,
+			@RequestParam("userNo") int userNo){
+		return service.getPostsByCategory(categoryNo, userNo);
 	
 	}
 	

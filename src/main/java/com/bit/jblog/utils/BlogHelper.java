@@ -25,7 +25,6 @@ public class BlogHelper {
 			return;
 
 		int no = mService.getNoById(userId);
-			
 		model.addAttribute("userId", userId);
 		model.addAttribute("blog", bService.getBlogInfo(no));
 		model.addAttribute("posts", parseToJson(bService.getPosts(no)));
@@ -39,7 +38,7 @@ public class BlogHelper {
 		int no = mService.getNoById(userId);
 		model.addAttribute("userId", userId);
 		model.addAttribute("blog", bService.getBlogInfo(no));
-		model.addAttribute("posts", parseToJson(bService.getPostsByCategory(categoryNum)));
+		model.addAttribute("posts", parseToJson(bService.getPostsByCategory(categoryNum, no)));
 		model.addAttribute("categories", parseToJson(bService.getCategories(no)));
 	}
 
@@ -49,6 +48,13 @@ public class BlogHelper {
 		model.addAttribute("userId", userId);
 		model.addAttribute("blog", bService.getBlogInfo(no));
 		model.addAttribute("categories", parseToJson(bService.getCategories(no)));
+		
+	}
+	
+	public static void setSinglePost(String userId, int postNo, Model model, MemberService mService, BlogService bService) {
+		int no = mService.getNoById(userId);
+		System.out.println(no + " " +postNo);
+		model.addAttribute("singlePost", bService.getSinglePost(postNo, no));
 		
 	}
 	

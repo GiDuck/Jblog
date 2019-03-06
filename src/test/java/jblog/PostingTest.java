@@ -68,18 +68,6 @@ public class PostingTest {
 		}	
 		
 	}
-
-	@Ignore
-	@Test
-	public void getPostByCategory() {
-		
-		List<Map<String, String>> posts = service.getPostsByCategory(2);
-		Assert.assertNotNull(posts);
-		for(Map<String, String> map : posts) {
-			System.out.println(map);
-		}	
-
-	}
 	
 	
 	@Ignore
@@ -104,13 +92,23 @@ public class PostingTest {
 	
 	@Test
 	public void getSinglePost() {
-		PostVo vo = service.getSinglePost(3);
+		PostVo vo = service.getSinglePost(7, 3);
 		Assert.assertNotNull(vo);
 		System.out.println(vo.toString());
 	}
 	
 	
-	
+	@Ignore
+	@Test
+	public void getPostByCategory() {
+		
+		List<Map<String, String>> posts = service.getPostsByCategory(21,17);
+		Assert.assertNotNull(posts);
+		for(Map<String, String> map : posts) {
+			System.out.println(map);
+		}	
+
+	}	
 	
 	
 

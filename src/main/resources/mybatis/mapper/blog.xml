@@ -53,7 +53,7 @@ insert into category values (0, #{name},#{description}, now(), #{user_no})
 <select id="getCategoriesByMap" parameterType="int" resultType="map">
 <![CDATA[
 
-select no, name, description, (select count(*) from post p where p.no = c.no) as postCount
+select no, name, description, (select count(*) from post p where p.category_no = c.no) as postCount
 from category c where c.user_no = #{userNo}
 
 ]]>
@@ -62,7 +62,7 @@ from category c where c.user_no = #{userNo}
 
 <select id="countPostToCategory" parameterType="int" resultType="int">
 <![CDATA[
-select count(*) from post p, category c where p.no = c.no
+select count(*) from post p, category c where p.category_no = c.no and c.no = #{categoryNo} 
 ]]>
 </select>
 
@@ -87,11 +87,11 @@ order by p.reg_Date desc
 </select>
 
 
-<select id="getPostsByCategory" resultType="map" parameterType="int">
+<select id="getPostsByCategory" resultType="map" parameterType="map">
 <![CDATA[
 select p.no, p.title, p.content, p.reg_Date, c.no as c_no, c.name as c_name, c.user_no
 from post p, category c
-where p.category_no = c.no and c.no = #{categoryNo}
+where p.category_no = c.no and c.no = #{categoryNo} and c.user_no = #{userNo}
 order by p.reg_Date desc
 
 ]]>
@@ -116,10 +116,11 @@ where no = #{no}
 </update>
 
 
-<select id="getSinglePost" resultType="postVo">
+<select id="getSinglePost" parameterType="map" resultType="postVo">
 
 <![CDATA[
-select * from post where no = #{no}
+select p.* from post p, category c
+where p.category_no = c.no and c.user_no = #{userNo} and p.no = #{postNo}
 ]]>
 
 

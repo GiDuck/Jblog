@@ -88,9 +88,9 @@ public class BlogService {
 		return dao.getPosts(userNo);
 	}
 	
-	public List<Map<String, String>> getPostsByCategory (int categoryNo){
+	public List<Map<String, String>> getPostsByCategory (int categoryNo, int userNo){
 		
-		return dao.getPostsByCategory(categoryNo);
+		return dao.getPostsByCategory(categoryNo, userNo);
 	}
 	
 	
@@ -107,8 +107,8 @@ public class BlogService {
 	}
 	
 	
-	public PostVo getSinglePost(int postNum) {
+	public PostVo getSinglePost(int postNo, int userNo) {
 		
-		return dao.getSinglePost(postNum);
+		return dao.getSinglePost(postNo, userNo);
 	}
 }

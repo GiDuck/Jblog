@@ -1,5 +1,6 @@
 package com.bit.jblog.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,9 +66,12 @@ public class BlogDao {
 		return sqlSession.selectList("blog.getPosts", userNo);
 	}
 	
-	public List<Map<String, String>> getPostsByCategory (int categoryNo){
+	public List<Map<String, String>> getPostsByCategory (int categoryNo, int userNo){
 		
-		return sqlSession.selectList("blog.getPostsByCategory", categoryNo);
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		param.put("categoryNo", categoryNo);
+		param.put("userNo", userNo);
+		return sqlSession.selectList("blog.getPostsByCategory",param);
 	}
 	
 	
@@ -79,9 +83,12 @@ public class BlogDao {
 		return sqlSession.update("blog.updatePost", vo);
 	}
 	
-	public PostVo getSinglePost(int postNum) {
+	public PostVo getSinglePost(int postNo, int userNo) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		param.put("postNo", postNo);
+		param.put("userNo", userNo);
 		
-		return sqlSession.selectOne("blog.getSinglePost", postNum);
+		return sqlSession.selectOne("blog.getSinglePost", param);
 	}
 	
 }

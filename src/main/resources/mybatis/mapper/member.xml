@@ -47,7 +47,7 @@
 
 </select>
 
-<select id="getNoById" resultType="int">
+<select id="getNoById" resultType="int" parameterType="string">
 	<![CDATA[
 	select no from user where id = #{id}
 	]]>

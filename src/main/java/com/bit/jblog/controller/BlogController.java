@@ -60,8 +60,7 @@ public class BlogController {
 		
 		if(post.isPresent()) {
 			
-			System.out.println(service.getSinglePost(post.get()).toString());
-			model.addAttribute("singlePost", service.getSinglePost(post.get()));
+			BlogHelper.setSinglePost(id, post.get(), model, memService, service);
 		}
 		
 		
